@@ -12,7 +12,7 @@ COMPILER_FLAGS = -w
 LINKER_FLAGS = -lSDL2 -lSDL2_image
 
 # Name of output file
-OUT_NAME = game
+OUT_NAME = game.out
 
 # Default target
 all: $(OBJS)

@@ -58,7 +58,7 @@ int main(int argc, char* args[])
         // Game Code after render clear
         // ...
 
-        // Set Main Viewport
+        // Render Main Viewport
         SDL_Rect primeViewport;
         primeViewport.h = WINDOW_HEIGHT;
         primeViewport.w = WINDOW_WIDTH * 0.75f;
@@ -70,18 +70,17 @@ int main(int argc, char* args[])
         spaceBgTex->Render(0, 0);
         planetTex->Render(planetX, planetY);
 
-        // Set Left Pane
-        SDL_Rect leftViewport;
-        leftViewport.h = WINDOW_HEIGHT;
-        leftViewport.w = WINDOW_WIDTH - primeViewport.w;
-        leftViewport.x = primeViewport.w;
-        leftViewport.y = 0;
-        SDL_RenderSetViewport(mandala->GetRenderer(), &leftViewport);
+        // Render Right Pane
+        SDL_Rect rightViewport;
+        rightViewport.h = WINDOW_HEIGHT;
+        rightViewport.w = WINDOW_WIDTH - primeViewport.w;
+        rightViewport.x = primeViewport.w;
+        rightViewport.y = 0;
+        SDL_RenderSetViewport(mandala->GetRenderer(), &rightViewport);
         planetTex->Render(0, 0);
         
         // Swap buffer
         SDL_RenderPresent(mandala->GetRenderer());
-
         // Set refresh rate
         SDL_Delay(1000/FPS);
     }
