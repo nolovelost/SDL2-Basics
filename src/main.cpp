@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "mandala.h"
+#include "input.h"
 #include "texture.h"
 
 #define FPS 60
@@ -13,6 +14,9 @@ int main(int argc, char* args[])
 {
     // Get Mandala
     Mandala* mandala = Mandala::Instance();
+
+    // Create Input
+    Input* input = new Input();
 
     // Create a texture surface
     Texture* planetTex = new Texture();
@@ -37,20 +41,25 @@ int main(int argc, char* args[])
                 exitState = true;
             else if (event.type == SDL_KEYDOWN)
             {
-                SDL_Keycode key = event.key.keysym.sym;
-                if (key == SDLK_w)
-                    planetY -= 25.0f;
-                else if (key == SDLK_s)
-                    planetY += 25.0f;
-                if (key == SDLK_a)
-                    planetX -= 25.0f;
-                else if (key == SDLK_d)
-                    planetX += 25.0f;
+                input->ProcessKeyDown(event);
+            }
+            else if (event.type == SDL_KEYUP)
+            {
+                input->ProcessKeyUp(event);
             }
         }
 
         // Game Code before render clear
         // ...
+        if (input->IsKeyHeld(SDL_SCANCODE_W))
+            planetY -= 5.0f;
+        if (input->IsKeyHeld(SDL_SCANCODE_S))
+            planetY += 5.0f;
+        if (input->IsKeyHeld(SDL_SCANCODE_A))
+            planetX -= 5.0f;
+        if (input->IsKeyHeld(SDL_SCANCODE_D))
+            planetX += 5.0f;
+        
 
         // Clear the renderer window
         SDL_RenderClear(mandala->GetRenderer());
