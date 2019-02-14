@@ -1,5 +1,5 @@
 # Files to compile as part of the project
-OBJS = src/texture.h src/texture.cpp src/mandala.h src/mandala.cpp src/main.cpp 
+OBJS = src/texture.* src/mandala.* src/main.cpp 
 
 # Compiler used
 CC = g++

@@ -15,8 +15,8 @@ int main(int argc, char* args[])
     Mandala* mandala = Mandala::Instance();
 
     // Create a texture surface
-    LTexture* planetTex = new LTexture();
-    LTexture* spaceBgTex = new LTexture();
+    Texture* planetTex = new Texture();
+    Texture* spaceBgTex = new Texture();
 
     planetTex->LoadFromFile("./elements/images/background/parallax-space-big-planet.png");
     spaceBgTex->LoadFromFile("./elements/images/background/parallax-space-backgound.png");

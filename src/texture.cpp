@@ -2,7 +2,7 @@
 #include "texture.h"
 #include "mandala.h"
 
-LTexture::LTexture()
+Texture::Texture()
 {
 	//Initialize
 	texture = NULL;
@@ -10,13 +10,13 @@ LTexture::LTexture()
 	height = 0;
 }
 
-LTexture::~LTexture()
+Texture::~Texture()
 {
 	//Deallocate
 	Free();
 }
 
-bool LTexture::LoadFromFile(std::string path)
+bool Texture::LoadFromFile(std::string path)
 {
 	//Get rid of preexisting texture
 	Free();
@@ -42,7 +42,7 @@ bool LTexture::LoadFromFile(std::string path)
 	return texture != NULL;
 }
 
-void LTexture::Free()
+void Texture::Free()
 {
 	//Free texture if it exists
 	if( texture != NULL )
@@ -54,25 +54,25 @@ void LTexture::Free()
 	}
 }
 
-void LTexture::SetColor( Uint8 red, Uint8 green, Uint8 blue )
+void Texture::SetColor( Uint8 red, Uint8 green, Uint8 blue )
 {
 	//Modulate texture rgb
 	SDL_SetTextureColorMod( texture, red, green, blue );
 }
 
-void LTexture::SetBlendMode( SDL_BlendMode blending )
+void Texture::SetBlendMode( SDL_BlendMode blending )
 {
 	//Set blending function
 	SDL_SetTextureBlendMode( texture, blending );
 }
 		
-void LTexture::SetAlpha( Uint8 alpha )
+void Texture::SetAlpha( Uint8 alpha )
 {
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod( texture, alpha );
 }
 
-void LTexture::Render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
+void Texture::Render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, width, height };
@@ -88,32 +88,32 @@ void LTexture::Render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
 	SDL_RenderCopyEx( Mandala::Instance()->GetRenderer(), texture, clip, &renderQuad, angle, center, flip );
 }
 
-int LTexture::GetWidth()
+int Texture::GetWidth()
 {
 	return width;
 }
 
-int LTexture::GetHeight()
+int Texture::GetHeight()
 {
 	return height;
 }
 
-void LTexture::SetWidth(int w)
+void Texture::SetWidth(int w)
 {
 	width = w;
 }
 
-void LTexture::SetHeight(int h)
+void Texture::SetHeight(int h)
 {
     height = h;
 }
 
-SDL_Texture* LTexture::GetRawTexture()
+SDL_Texture* Texture::GetRawTexture()
 {
     return texture;
 }
 
-SDL_Surface* LTexture::LoadImageFromSurface(std::string path)
+SDL_Surface* Texture::LoadImageFromSurface(std::string path)
 {
     SDL_Surface* imgSurface = IMG_Load(path.c_str());
     if (!imgSurface)
@@ -137,7 +137,7 @@ SDL_Surface* LTexture::LoadImageFromSurface(std::string path)
     }
 }
 
-SDL_Texture* LTexture::LoadTexture(SDL_Surface* texSurface)
+SDL_Texture* Texture::LoadTexture(SDL_Surface* texSurface)
 {
     // Load image into renderer hardware memory
     SDL_Texture *texture = SDL_CreateTextureFromSurface(Mandala::Instance()->GetRenderer(), texSurface);
