@@ -1,5 +1,9 @@
 #include <string>
+
+#ifndef _SDL_H_
+#define _SDL_H_
 #include <SDL2/SDL.h>
+#endif
 
 //Texture wrapper class
 class Texture

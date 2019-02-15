@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <string>
+
+#ifndef _SDL_H_
+#define _SDL_H_
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_timer.h>
+#endif
+
 #include <SDL2/SDL_image.h>
+
+#define _MANDALA_H_
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600

@@ -1,8 +1,9 @@
+#ifndef _SDL_H_
+#define _SDL_H_
 #include <SDL2/SDL.h>
-#include <map>
+#endif
 
-//#define __USE_INPUT_EVENT__
-#define __USE_INPUT_STATE__
+#include <map>
 
 class Input
 {
