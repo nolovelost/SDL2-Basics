@@ -2,23 +2,12 @@
 #include "mandala.h"
 #endif
 
-#include "input.h"
-#include "texture.h"
-
 class Machine
 {
 public:
-    int Start();
-    int Update();
-    int End();
-
-private:
-    Mandala* mandala;
-    Input* input;
-
-    // test attributes
-    Texture *planetTex;
-    Texture *spaceBgTex;
-    float planetX;
-    float planetY;
+    virtual Machine* Update(double deltaTime) = 0;
+    // #TODO: Need to create a custom event system
+    // virtual Machine* HandleEvent(const GameEvent& event) = 0;
+    virtual Machine* HandleEvent(const SDL_Event& event) = 0;
+    virtual void Render() = 0;
 };

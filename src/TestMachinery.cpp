@@ -1,8 +1,8 @@
-#include "machine.h"
+#include "TestMachinery.h"
 
 #define FPS 60
 
-int Machine::Start()
+TestMachinery::TestMachinery()
 {
     mandala = Mandala::Instance();
     input = new Input();
@@ -16,20 +16,17 @@ int Machine::Start()
     planetY = (WINDOW_HEIGHT - planetTex->GetHeight()) / 2;
 }
 
-int Machine::Update()
-{   
-    // Process events
-    SDL_Event event;
-    while (SDL_PollEvent(&event) != 0)
-    {
-        if (event.type == SDL_QUIT)
-            return 1;   // EXIT STATE
-    }
-    // Update Input States!
+Machine* TestMachinery::HandleEvent(const SDL_Event& event)
+{
+    // Update Input States
     input->UpdateKeyboardStates();
     input->UpdateMouseStates();
+    
+    return this;
+}
 
-
+Machine* TestMachinery::Update(double deltaTime)
+{
     // Game Code before render clear
     // ...
     if (input->IsKeyPressed(SDL_SCANCODE_W))
@@ -51,10 +48,13 @@ int Machine::Update()
         planetY = input->GetMouseY();
     }
 
+    return this;
+}
 
+void TestMachinery::Render()
+{
     // Clear the renderer window
     SDL_RenderClear(mandala->GetRenderer());
-
 
     // Render Main Viewport
     SDL_Rect primeViewport;
@@ -77,17 +77,13 @@ int Machine::Update()
     SDL_RenderSetViewport(mandala->GetRenderer(), &rightViewport);
     planetTex->Render(0, 0);
 
-
     // Swap buffer
     SDL_RenderPresent(mandala->GetRenderer());
     // Set refresh rate
     SDL_Delay(1000/FPS);
-
-
-    return 0;
 }
 
-int Machine::End()
+TestMachinery::~TestMachinery()
 {
     planetTex->Free();
     spaceBgTex->Free();
