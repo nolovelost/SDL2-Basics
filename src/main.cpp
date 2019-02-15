@@ -9,6 +9,8 @@
 #include "texture.h"
 
 #define FPS 60
+//#define __USE_INPUT_EVENT__
+#define __USE_INPUT_STATE__
 
 int main(int argc, char* args[])
 {
@@ -40,6 +42,7 @@ int main(int argc, char* args[])
             if (event.type == SDL_QUIT)
                 exitState = true;
 
+#ifdef __USE_INPUT_EVENT__
             switch (event.type)
             {
                 case SDL_KEYDOWN:
@@ -54,26 +57,39 @@ int main(int argc, char* args[])
                 case SDL_MOUSEBUTTONUP:
                     input->ProcessMouseButtonUp(event);
                     break;
+                case SDL_MOUSEMOTION:
+                    input->ProcessMouseMotion(event);
+                    break;
 
                 default:
                     break;
             }
+#endif
         }
 
+#ifdef __USE_INPUT_STATE__
+        input->UpdateKeyboardStates();
+        input->UpdateMouseStates();
+#endif
         // Game Code before render clear
         // ...
-        if (input->IsKeyHeld(SDL_SCANCODE_W))
+        if (input->IsKeyPressed(SDL_SCANCODE_W))
             planetY -= 5.0f;
-        if (input->IsKeyHeld(SDL_SCANCODE_S))
+        if (input->IsKeyPressed(SDL_SCANCODE_S))
             planetY += 5.0f;
-        if (input->IsKeyHeld(SDL_SCANCODE_A))
+        if (input->IsKeyPressed(SDL_SCANCODE_A))
             planetX -= 5.0f;
-        if (input->IsKeyHeld(SDL_SCANCODE_D))
+        if (input->IsKeyPressed(SDL_SCANCODE_D))
             planetX += 5.0f;
         if (input->IsMouseButtonPressed(SDL_BUTTON_LEFT))
         {
             planetX = WINDOW_WIDTH/2;
             planetY = WINDOW_HEIGHT/2;
+        }
+        if (input->IsMouseMoving())
+        {
+            planetX = input->GetMouseX();
+            planetY = input->GetMouseY();
         }
 
         // Clear the renderer window
