@@ -4,8 +4,8 @@ void Input::ClearHistory()
 {
     pressedKeys.clear();
     releasedKeys.clear();
-    pressedMouseButton.clear();
-    releasedMouseButton.clear();
+    pressedMouseButtons.clear();
+    releasedMouseButtons.clear();
 }
 
 void Input::ProcessKeyDown(const SDL_Event& event)
@@ -24,16 +24,16 @@ void Input::ProcessKeyUp(const SDL_Event& event)
 
 void Input::ProcessMouseButtonDown(const SDL_Event& event)
 {
-    pressedMouseButton[event.button.button] = true;
-    releasedMouseButton[event.button.button] = false;
-    heldMouseButton[event.button.button] = true;
+    pressedMouseButtons[event.button.button] = true;
+    releasedMouseButtons[event.button.button] = false;
+    heldMouseButtons[event.button.button] = true;
 }
 
 void Input::ProcessMouseButtonUp(const SDL_Event& event)
 {
-    pressedMouseButton[event.button.button] = false;
-    releasedMouseButton[event.button.button] = true;
-    heldMouseButton[event.button.button] = false;
+    pressedMouseButtons[event.button.button] = false;
+    releasedMouseButtons[event.button.button] = true;
+    heldMouseButtons[event.button.button] = false;
 }
 
 bool Input::IsKeyPressed(SDL_Scancode key)
@@ -53,15 +53,15 @@ bool Input::IsKeyHeld(SDL_Scancode key)
 
 bool Input::IsMouseButtonPressed(Uint8 button)
 {
-    return pressedMouseButton[button];
+    return pressedMouseButtons[button];
 }
 
 bool Input::IsMouseButtonReleased(Uint8 button)
 {
-    return releasedMouseButton[button];
+    return releasedMouseButtons[button];
 }
 
 bool Input::IsMouseButtonHeld(Uint8 button)
 {
-    return heldMouseButton[button];
+    return heldMouseButtons[button];
 }

@@ -27,8 +27,8 @@ protected:
     std::map<SDL_Scancode, bool> releasedKeys;
     std::map<SDL_Scancode, bool> heldKeys;
     // Mouse Buttons
-    std::map<Uint8, bool> pressedMouseButton;
-    std::map<Uint8, bool> releasedMouseButton;
-    std::map<Uint8, bool> heldMouseButton;
+    std::map<Uint8, bool> pressedMouseButtons;
+    std::map<Uint8, bool> releasedMouseButtons;
+    std::map<Uint8, bool> heldMouseButtons;
 
 };
