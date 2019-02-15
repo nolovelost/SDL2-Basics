@@ -9,8 +9,6 @@
 #include "texture.h"
 
 #define FPS 60
-//#define __USE_INPUT_EVENT__
-#define __USE_INPUT_STATE__
 
 int main(int argc, char* args[])
 {
@@ -41,36 +39,12 @@ int main(int argc, char* args[])
         {
             if (event.type == SDL_QUIT)
                 exitState = true;
-
-#ifdef __USE_INPUT_EVENT__
-            switch (event.type)
-            {
-                case SDL_KEYDOWN:
-                    input->ProcessKeyDown(event);
-                    break;
-                case SDL_KEYUP:
-                    input->ProcessKeyUp(event);
-                    break;
-                case SDL_MOUSEBUTTONDOWN:
-                    input->ProcessMouseButtonDown(event);
-                    break;
-                case SDL_MOUSEBUTTONUP:
-                    input->ProcessMouseButtonUp(event);
-                    break;
-                case SDL_MOUSEMOTION:
-                    input->ProcessMouseMotion(event);
-                    break;
-
-                default:
-                    break;
-            }
-#endif
         }
 
-#ifdef __USE_INPUT_STATE__
+        // Update Input States!
         input->UpdateKeyboardStates();
         input->UpdateMouseStates();
-#endif
+
         // Game Code before render clear
         // ...
         if (input->IsKeyPressed(SDL_SCANCODE_W))

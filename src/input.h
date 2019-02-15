@@ -6,36 +6,6 @@
 
 class Input
 {
-    
-#ifdef __USE_INPUT_EVENT__
-public:
-    void ClearHistory();
-    
-    void ProcessKeyUp(const SDL_Event& event);
-    void ProcessKeyDown(const SDL_Event& event);
-    void ProcessMouseButtonUp(const SDL_Event& event);
-    void ProcessMouseButtonDown(const SDL_Event& event);
-    void ProcessMouseMotion(const SDL_Event& event);
-    
-    // Keyboard Key Queries
-    bool IsKeyPressedEvent(SDL_Scancode key);
-    bool IsKeyReleasedEvent(SDL_Scancode key);
-    // Mouse Button Queries
-    bool IsMouseButtonPressedEvent(Uint32 button);
-    bool IsMouseButtonReleasedEvent(Uint32 button);
-    int GetRelativeMouseX();
-    int GetRelativeMouseY();
-protected:
-    // Keyboard Keys
-    std::map<SDL_Scancode, bool> pressedKeys;
-    std::map<SDL_Scancode, bool> releasedKeys;
-    // Mouse Buttons
-    std::map<Uint8, bool> pressedMouseButtons;
-    std::map<Uint8, bool> releasedMouseButtons;
-    SDL_Point mouseRelativePostion;
-
-#endif
-
 public:
     void UpdateKeyboardStates();
     void UpdateMouseStates();
