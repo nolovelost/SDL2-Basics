@@ -26,14 +26,14 @@ int main(int argc, char* args[])
                 exitState = true;
             
             machine = machine->HandleEvent(event);
-            if (machine == nullptr)
-                exitState = true;
+            if (!machine)
+                break;
         }
         
         // Update Machine
         machine = machine->Update(NULL);
-        if (machine == nullptr)
-                exitState = true;
+        if (!machine)
+                break;
 
         // Render Machine
         machine->Render();

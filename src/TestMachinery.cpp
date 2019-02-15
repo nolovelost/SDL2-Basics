@@ -21,7 +21,7 @@ Machine* TestMachinery::HandleEvent(const SDL_Event& event)
     // Update Input States
     input->UpdateKeyboardStates();
     input->UpdateMouseStates();
-    
+
     return this;
 }
 
@@ -47,6 +47,8 @@ Machine* TestMachinery::Update(double deltaTime)
         planetX = input->GetMouseX();
         planetY = input->GetMouseY();
     }
+    if (input->IsMouseButtonPressed(SDL_BUTTON_RIGHT))
+        return nullptr;
 
     return this;
 }

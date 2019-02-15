@@ -43,7 +43,7 @@ public:
         return mandala;
     }
 
-    SDL_Window* GetWindow(){return window;}
+    const SDL_Window* GetWindow(){return window;}
     SDL_Surface* GetScreenSurface(){return screenSurface;}
     SDL_Renderer* GetRenderer(){return renderer;}
 
