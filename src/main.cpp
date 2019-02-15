@@ -39,13 +39,24 @@ int main(int argc, char* args[])
         {
             if (event.type == SDL_QUIT)
                 exitState = true;
-            else if (event.type == SDL_KEYDOWN)
+
+            switch (event.type)
             {
-                input->ProcessKeyDown(event);
-            }
-            else if (event.type == SDL_KEYUP)
-            {
-                input->ProcessKeyUp(event);
+                case SDL_KEYDOWN:
+                    input->ProcessKeyDown(event);
+                    break;
+                case SDL_KEYUP:
+                    input->ProcessKeyUp(event);
+                    break;
+                case SDL_MOUSEBUTTONDOWN:
+                    input->ProcessMouseButtonDown(event);
+                    break;
+                case SDL_MOUSEBUTTONUP:
+                    input->ProcessMouseButtonUp(event);
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -59,7 +70,11 @@ int main(int argc, char* args[])
             planetX -= 5.0f;
         if (input->IsKeyHeld(SDL_SCANCODE_D))
             planetX += 5.0f;
-        
+        if (input->IsMouseButtonPressed(SDL_BUTTON_LEFT))
+        {
+            planetX = WINDOW_WIDTH/2;
+            planetY = WINDOW_HEIGHT/2;
+        }
 
         // Clear the renderer window
         SDL_RenderClear(mandala->GetRenderer());
