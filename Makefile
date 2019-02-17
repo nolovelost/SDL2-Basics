@@ -1,5 +1,5 @@
 # Files to compile as part of the project
-OBJS = src/TestMachinery.* src/machine.* src/input.* src/texture.* src/mandala.* src/main.cpp 
+OBJS = src/renderable.h src/TestMachinery.* src/machine.* src/input.* src/sprite.* src/mandala.* src/main.cpp 
 
 # Compiler used
 CC = g++

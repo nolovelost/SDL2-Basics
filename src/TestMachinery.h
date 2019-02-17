@@ -1,7 +1,7 @@
 #include "machine.h"
 
 #include "input.h"
-#include "texture.h"
+#include "sprite.h"
 
 class TestMachinery : public Machine
 {
@@ -16,8 +16,8 @@ private:
     Mandala* mandala;
     Input* input;
 
-    Texture *planetTex;
-    Texture *spaceBgTex;
+    Sprite *planetTex;
+    Sprite *spaceBgTex;
     float planetX;
     float planetY;
 };

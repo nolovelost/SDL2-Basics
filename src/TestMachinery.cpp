@@ -8,12 +8,12 @@ TestMachinery::TestMachinery()
     input = new Input();
 
     // Test Procedures
-    planetTex = new Texture();
-    spaceBgTex = new Texture();
+    planetTex = new Sprite();
+    spaceBgTex = new Sprite();
     planetTex->LoadFromFile("./elements/images/background/parallax-space-big-planet.png");
     spaceBgTex->LoadFromFile("./elements/images/background/parallax-space-backgound.png");
-    planetX = (WINDOW_WIDTH - planetTex->GetWidth()) / 2;
-    planetY = (WINDOW_HEIGHT - planetTex->GetHeight()) / 2;
+    planetX = (WINDOW_WIDTH - planetTex->width) / 2;
+    planetY = (WINDOW_HEIGHT - planetTex->height) / 2;
 }
 
 Machine* TestMachinery::HandleEvent(const SDL_Event& event)
