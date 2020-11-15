@@ -1,4 +1,4 @@
-# mandala
+# SDL2 Basics
 A 2D game engine made using C++ and SDL2. [WIP]
 
 To compile, make sure you have libsdl2-dev and libsdl-image installed in your system.
