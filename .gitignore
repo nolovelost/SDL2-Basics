@@ -33,3 +33,6 @@
 
 # vscode config files
 .vscode/*
+
+# vs studio files
+.vs/*

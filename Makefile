@@ -16,4 +16,4 @@ OUT_NAME = game.out
 
 # Default target
 all: $(OBJS)
-		$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OUT_NAME)
+$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OUT_NAME)
